@@ -1,7 +1,6 @@
 package com.example.demo1.common;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -28,7 +27,7 @@ public class HttpResponse<T> implements Serializable {
      */
     private T data;
 
-    public HttpResponse( Integer code, String msg, T object) {
+    public HttpResponse(T code, String msg, T object) {
 
     }
 
@@ -69,7 +68,7 @@ public class HttpResponse<T> implements Serializable {
      * @param msg 提示信息
      */
     public static <T> HttpResponse<T> validateFailed(String msg) {
-        return (HttpResponse<T>) new HttpResponse<Serializable>(ApiCode.VALIDATE_FAILED.code(), msg, null);
+        return (HttpResponse<T>) new HttpResponse<Serializable>(ApiCode.USERNAME_OR_PASSWORD_ERROR.code(), msg, null);
     }
 //    public static HttpResponse<Object> fail(List<User> apiCode) {
 //        return new HttpResponse<>(ApiCode.ERROR.code(), ApiCode.ERROR.getMsg(), null);

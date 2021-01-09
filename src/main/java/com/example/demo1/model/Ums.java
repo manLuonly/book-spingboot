@@ -1,7 +1,9 @@
 package com.example.demo1.model;
 
-public class Ums {
+import lombok.Data;
 
+@Data
+public class Ums {
     /**
      *
      */

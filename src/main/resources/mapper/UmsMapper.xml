@@ -5,15 +5,13 @@
     <resultMap id="umsMap" type="com.example.demo1.model.Ums">
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
-        <result column="id" jdbcType="INTEGER" property="id"/>
     </resultMap>
-
 
 
 
     <!--登录-->
     <select id="login" resultType="com.example.demo1.model.Ums">
-        SELECT * FROM users WHERE username=#{username} AND password=#{password}
+        SELECT * FROM ums WHERE username=#{username} AND password=#{password}
     </select>
 
 
