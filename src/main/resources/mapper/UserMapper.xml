@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo1.dao.UserDAO">
+
+    <resultMap id="userMap" type="com.example.demo1.model.User">
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="phone" jdbcType="INTEGER" property="phone"/>
+        <result column="email" jdbcType="INTEGER" property="email"/>
+        <result column="balance" jdbcType="INTEGER" property="balance"/>
+        <result column="ip" jdbcType="INTEGER" property="ip"/>
+    </resultMap>
+
+<!--    &lt;!&ndash;通过ID查询单个&ndash;&gt;-->
+<!--    <select id="findById" resultMap="bookListMap">-->
+<!--        SELECT id,book_name,numbering,author,address,price,create_time FROM book_list-->
+<!--        WHERE id=#{id}-->
+<!--    </select>-->
+
+    <!--分页查询-->
+    <select id="findByPage" resultMap="userMap">
+        SELECT id,username,address,phone,email,balance,ip FROM user
+    </select>
+
+
+
+    <!--新增-->
+    <insert id="insert">
+        INSERT INTO user(id,username,address,phone,email,balance,ip)
+        VALUES (#{id},#{username},#{address},#{phone},#{email},#{balance},#{ip})
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        UPDATE user SET id=#{id},username=#{username},address=#{address},phone=#{phone},email=#{email},balance=#{balance},ip=#{ip}
+        WHERE id=#{id}
+    </update>
+
+    <!--通过ID删除单个-->
+    <delete id="deleteById">
+        DELETE FROM user
+        WHERE id=#{id}
+    </delete>
+
+</mapper>

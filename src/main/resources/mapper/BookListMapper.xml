@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo1.dao.BookListDAO">
+
+    <resultMap id="bookListMap" type="com.example.demo1.model.BookList">
+        <id property="id" column="id"/>
+        <result property="bookname" column="bookname"/>
+        <result property="numbering" column="numbering"/>
+        <result property="author" column="author"/>
+        <result property="address" column="address"/>
+        <result property="price" column="price"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <!--通过ID查询单个-->
+    <select id="findById" resultMap="bookListMap">
+        SELECT id,bookname,numbering,author,address,price,create_time FROM book_list
+        WHERE id=#{id}
+    </select>
+
+    <!--分页查询-->
+    <select id="findByPage" resultMap="bookListMap">
+        SELECT id,bookname,numbering,author,address,price,create_time FROM book_list
+    </select>
+
+    <!--新增-->
+    <insert id="insert">
+        INSERT INTO book_list(id,bookname,numbering,author,address,price,create_time)
+        VALUES (#{id},#{bookname},#{numbering},#{author},#{address},#{price},#{createTime})
+    </insert>
+
+    <!--修改-->
+    <update id="update">
+        UPDATE book_list SET bookname=#{bookname},numbering=#{numbering},author=#{author},address=#{address},price=#{price},create_time=#{createTime}
+        WHERE id=#{id}
+    </update>
+
+    <!--通过ID删除单个-->
+    <delete id="deleteById">
+        DELETE FROM book_list
+        WHERE id=#{id}
+    </delete>
+
+</mapper>
