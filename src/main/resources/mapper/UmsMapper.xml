@@ -8,11 +8,20 @@
     </resultMap>
 
 
-
     <!--登录-->
     <select id="login" resultType="com.example.demo1.model.Ums">
         SELECT * FROM ums WHERE username=#{username} AND password=#{password}
     </select>
 
+    <!--注册-->
+    <select id="registered">
+        INSERT INTO ums(username,password)
+        VALUES (#{username},#{password})
+    </select>
 
+
+    <!--修改密码-->
+    <select id="updatePassword">
+        UPDATE ums SET password=#{password} WHERE id=#{id}
+    </select>
 </mapper>

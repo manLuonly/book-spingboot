@@ -16,4 +16,12 @@ public class UmsServicelmpl implements UmsService {
     public Ums login(String username, String password) {
             return umsDAO.login(username,password);
     }
+
+    @Override
+    public String registered(String username, String password) {
+        return umsDAO.registered(username,password);
+    }
+
+    @Override
+    public String updatePassword( Integer id,String password ) { return umsDAO.updatePassword(id,password); };
 }
