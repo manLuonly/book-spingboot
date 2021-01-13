@@ -10,37 +10,32 @@
         <result column="email" jdbcType="INTEGER" property="email"/>
         <result column="balance" jdbcType="INTEGER" property="balance"/>
         <result column="ip" jdbcType="INTEGER" property="ip"/>
+        <result column="create_time"  property="create_time" />
+        <result column="update_time"  property="update_time" />
     </resultMap>
-
-<!--    &lt;!&ndash;通过ID查询单个&ndash;&gt;-->
-<!--    <select id="findById" resultMap="bookListMap">-->
-<!--        SELECT id,book_name,numbering,author,address,price,create_time FROM book_list-->
-<!--        WHERE id=#{id}-->
-<!--    </select>-->
 
     <!--分页查询-->
     <select id="findByPage" resultMap="userMap">
-        SELECT id,username,address,phone,email,balance,ip FROM user
+        SELECT id,username,address,phone,email,balance,ip,create_time,update_time FROM user
     </select>
-
-
 
     <!--新增-->
     <insert id="insert">
-        INSERT INTO user(id,username,address,phone,email,balance,ip)
-        VALUES (#{id},#{username},#{address},#{phone},#{email},#{balance},#{ip})
+        INSERT INTO user(id,username,address,phone,email,balance,ip,create_time,update_time)
+        VALUES (#{id},#{username},#{address},#{phone},#{email},#{balance},#{ip},#{create_time},#{update_time})
     </insert>
+
 
     <!--修改-->
     <update id="update">
-        UPDATE user SET id=#{id},username=#{username},address=#{address},phone=#{phone},email=#{email},balance=#{balance},ip=#{ip}
+        UPDATE user SET id=#{id},username=#{username},address=#{address},phone=#{phone},email=#{email},
+        balance=#{balance},ip=#{ip},create_time=#{create_time},update_time=#{update_time}
         WHERE id=#{id}
     </update>
 
     <!--通过ID删除单个-->
     <delete id="deleteById">
-        DELETE FROM user
-        WHERE id=#{id}
+        DELETE FROM user WHERE id=#{id}
     </delete>
 
 </mapper>

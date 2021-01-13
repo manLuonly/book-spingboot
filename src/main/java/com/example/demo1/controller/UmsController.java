@@ -31,7 +31,7 @@ public class UmsController {
     @ApiOperation(value = "登录")
     public HttpResponse login(@ApiParam("账号") @RequestParam String username,
                               @ApiParam("密码") @RequestParam String password) {
-        Ums login =  umsService.login(username, password);
+        Ums login = umsService.login(username, password);
 
         /** 如果登录成功 login返回查到的数据 */
         if (login == null) {
@@ -40,8 +40,8 @@ public class UmsController {
 
         /** 构建hasmap，返回构建的数据 */
         Map<String, Object> dataMap = new HashMap<>();
-//        dataMap.put("username", username);
-        dataMap.put("info",login);
+        dataMap.put("id", login.getId());
+        dataMap.put("info", login);
         return HttpResponse.success(dataMap);
     }
 
@@ -50,14 +50,14 @@ public class UmsController {
     @ApiOperation(value = "注册")
     public HttpResponse registered(@ApiParam("账号") @RequestParam String username,
                                    @ApiParam("密码") @RequestParam String password) {
-         umsService.registered(username, password);
+        umsService.registered(username, password);
 
 
         if (username == null || username == "" || password == null || password == "") {
             return HttpResponse.validateFailed("用户名或密码不能为空");
         }
 
-        return HttpResponse.success(null,"注册成功");
+        return HttpResponse.success(null, "注册成功");
     }
 
     @PostMapping("/updatePassword")
@@ -70,6 +70,6 @@ public class UmsController {
             return HttpResponse.validateFailed("密码不能为空");
         }
 
-        return HttpResponse.success(null,"修改密码成功");
+        return HttpResponse.success(null, "修改密码成功");
     }
 }
